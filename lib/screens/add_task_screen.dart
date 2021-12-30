@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import 'package:todoey_flutter/model/task_data.dart';
 
 class AddTaskScreen extends StatelessWidget {
-  AddTaskScreen({required this.onAddCallback});
-
-  late void Function(String?) onAddCallback;
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +32,7 @@ class AddTaskScreen extends StatelessWidget {
             child: Text('Add',
                 textAlign: TextAlign.center, style: TextStyle(fontSize: 16)),
             onPressed: (){
-              onAddCallback(newTaskLabel);
+              Provider.of<TaskData>(context).addTask(newTaskLabel);
             },
           )
         ]),
