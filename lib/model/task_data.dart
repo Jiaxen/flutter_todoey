@@ -1,22 +1,31 @@
+import 'dart:collection';
 import 'package:flutter/foundation.dart';
 import 'task.dart';
 
 class TaskData extends ChangeNotifier {
-  List<Task> task_list = [
+  List<Task> _tasks = [
     Task(label: 'Buy Milk', checked: false),
     Task(label: 'Buy Eggs', checked: true),
     Task(label: 'Buy Bread', checked: false),
   ];
 
-    int get taskCount {
-      return task_list.length;
-    }
+  UnmodifiableListView<Task> get tasks => UnmodifiableListView(_tasks);
 
-    int get openTaskCount {
-        return task_list.where((element) => element.checked == false).length;
-    }
+  int get taskCount {
+    return _tasks.length;
+  }
 
-    void addTask(String newTaskLabel) {
-      task_list.add(Task(label: newTaskLabel));
-    }
+  int get openTaskCount {
+    return _tasks.where((element) => element.checked == false).length;
+  }
+
+  void addTask(String newTaskLabel) {
+    _tasks.add(Task(label: newTaskLabel));
+    notifyListeners();
+  }
+
+  void updateTask(Task task){
+    task.changeChecked();
+    notifyListeners();
+  }
 }

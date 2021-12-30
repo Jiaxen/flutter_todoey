@@ -57,7 +57,7 @@ class TasksScreen extends StatelessWidget {
                     fontSize: 18,
                   ),
                 ),                Text(
-                  '${Provider.of<TaskData>(context).openTaskCount} tasks left',
+                  '${Provider.of<TaskData>(context).openTaskCount} left to do',
                   style: TextStyle(
                     color: Colors.white,
                     fontSize: 18,
