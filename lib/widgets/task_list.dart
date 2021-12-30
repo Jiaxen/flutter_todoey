@@ -4,37 +4,27 @@ import 'package:todoey_flutter/model/task.dart';
 
 
 class TaskList extends StatefulWidget {
+  const TaskList({this.taskList = const []});
+  final List<Task> taskList;
+
   @override
   State<TaskList> createState() => _TaskListState();
 }
 
 class _TaskListState extends State<TaskList> {
-  List<Task> task_list = [
-    Task(label: 'Buy Milk', checked: false),
-    Task(label: 'Buy Eggs', checked: true),
-    Task(label: 'Buy Bread', checked: false),
-  ];
 
   @override
   Widget build(BuildContext context) {
     return ListView.builder(
         padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-      itemCount: task_list.length,
+      itemCount: widget.taskList.length,
       itemBuilder: (context, index) {
-        return TaskTile(label: task_list[index].label, isChecked: task_list[index].checked, onChangeCheckboxState: (checkBoxState){
+        return TaskTile(label: widget.taskList[index].label, isChecked: widget.taskList[index].checked, onChangeCheckboxState: (checkBoxState){
           setState(() {
-            task_list[index].changeChecked();
+            widget.taskList[index].changeChecked();
           });
         });
       }
     );
   }
 }
-
-// ListView(
-// padding: EdgeInsets.symmetric(vertical: 20, horizontal: 20),
-// children: <Widget>[
-// TaskTile(),
-// TaskTile(),
-// ],
-// );
