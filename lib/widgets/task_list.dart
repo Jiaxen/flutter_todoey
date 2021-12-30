@@ -18,7 +18,7 @@ class TaskList extends StatelessWidget {
                 isChecked: task.checked,
                 onChangeCheckboxState: (checkBoxState){
               taskData.updateTask(task);
-            });
+            }, onLongPress: (){Provider.of<TaskData>(context, listen: false).deleteTask(task);},);
           }
       );
       },
